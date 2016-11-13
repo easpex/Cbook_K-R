@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		918D69811DD3AEEF000FD9A4 /* lineCount.c in Sources */ = {isa = PBXBuildFile; fileRef = 918D697F1DD3AEEF000FD9A4 /* lineCount.c */; };
-		91E9A0A91DCBB4E900BD5A2E /* countChar.c in Sources */ = {isa = PBXBuildFile; fileRef = 91E9A0A81DCBB4E900BD5A2E /* countChar.c */; };
+		91120B221DD7223D0072D2F1 /* test.c in Sources */ = {isa = PBXBuildFile; fileRef = 91120B211DD7223D0072D2F1 /* test.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,9 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		918D697F1DD3AEEF000FD9A4 /* lineCount.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lineCount.c; path = ProjectC/lineCount.c; sourceTree = "<group>"; };
-		91E9A0A51DCBB4E900BD5A2E /* ProjectC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ProjectC; sourceTree = BUILT_PRODUCTS_DIR; };
-		91E9A0A81DCBB4E900BD5A2E /* countChar.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = countChar.c; sourceTree = "<group>"; };
+		91120B211DD7223D0072D2F1 /* test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = test.c; sourceTree = "<group>"; };
+		91E9A0A51DCBB4E900BD5A2E /* ProjectC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = ProjectC; path = /Users/yos/code/C/Cbook/xcode/ProjectC/build/Debug/ProjectC; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,24 +41,14 @@
 		91E9A09C1DCBB4E900BD5A2E = {
 			isa = PBXGroup;
 			children = (
-				918D697F1DD3AEEF000FD9A4 /* lineCount.c */,
 				91E9A0A71DCBB4E900BD5A2E /* ProjectC */,
-				91E9A0A61DCBB4E900BD5A2E /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		91E9A0A61DCBB4E900BD5A2E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				91E9A0A51DCBB4E900BD5A2E /* ProjectC */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		91E9A0A71DCBB4E900BD5A2E /* ProjectC */ = {
 			isa = PBXGroup;
 			children = (
-				91E9A0A81DCBB4E900BD5A2E /* countChar.c */,
+				91120B211DD7223D0072D2F1 /* test.c */,
 			);
 			path = ProjectC;
 			sourceTree = "<group>";
@@ -108,7 +96,7 @@
 				en,
 			);
 			mainGroup = 91E9A09C1DCBB4E900BD5A2E;
-			productRefGroup = 91E9A0A61DCBB4E900BD5A2E /* Products */;
+			productRefGroup = 91E9A09C1DCBB4E900BD5A2E;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -122,8 +110,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91E9A0A91DCBB4E900BD5A2E /* countChar.c in Sources */,
-				918D69811DD3AEEF000FD9A4 /* lineCount.c in Sources */,
+				91120B221DD7223D0072D2F1 /* test.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
