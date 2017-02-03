@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		91FC499C1E44CEA80030B98B /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 91FC499B1E44CEA80030B98B /* main.c */; };
+		91FC499C1E44CEA80030B98B /* circListNoPtr.c in Sources */ = {isa = PBXBuildFile; fileRef = 91FC499B1E44CEA80030B98B /* circListNoPtr.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 
 /* Begin PBXFileReference section */
 		91FC49981E44CEA80030B98B /* circlListNoPtr */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = circlListNoPtr; sourceTree = BUILT_PRODUCTS_DIR; };
-		91FC499B1E44CEA80030B98B /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		91FC499B1E44CEA80030B98B /* circListNoPtr.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = circListNoPtr.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 		91FC499A1E44CEA80030B98B /* circlListNoPtr */ = {
 			isa = PBXGroup;
 			children = (
-				91FC499B1E44CEA80030B98B /* main.c */,
+				91FC499B1E44CEA80030B98B /* circListNoPtr.c */,
 			);
 			path = circlListNoPtr;
 			sourceTree = "<group>";
@@ -119,7 +119,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91FC499C1E44CEA80030B98B /* main.c in Sources */,
+				91FC499C1E44CEA80030B98B /* circListNoPtr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +246,7 @@
 				91FC49A11E44CEA80030B98B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
