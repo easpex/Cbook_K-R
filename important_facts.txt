@@ -1,0 +1,12 @@
+int (*daytab)[13] - pointer to the array of 13 ints
+int *daytab[13] - array of 13 pointers to ints (page 112)
+
+you can init multi-dimensional arrays:
+arr[2][13]
+or:
+arr[][13]
+or:
+*arr[13]
+
+
+
