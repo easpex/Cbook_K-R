@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:circListHeadTail.xcodeproj">
+      location = "self:circlListNoPtr.xcodeproj">
    </FileRef>
 </Workspace>
