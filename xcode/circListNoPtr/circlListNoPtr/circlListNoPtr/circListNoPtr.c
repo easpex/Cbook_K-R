@@ -1,17 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node * ptr;
-typedef struct node {
+typedef struct Node {
     int data;
-    ptr next;
-}item;
+    struct Node *next;
+} Node;
 
-void add2list(ptr *head, int num);
-void printList(ptr p);
+void add2list(Node **head, int num);
+void printList(Node *p);
 
 int main() {
-    ptr head = NULL;
+    Node *head = NULL;
     
     add2list(&head, 1);
     add2list(&head, 2);
@@ -31,11 +30,11 @@ int main() {
 }
 
 
-void add2list(ptr *head, int num) {
+void add2list(Node **head, int num) {
     printf("inside add\n");
-    ptr p1, p2, t;
+    Node *p1, *p2, *t;
     
-    t = (ptr) malloc(sizeof(item));
+    t = (Node *) malloc(sizeof(Node));
     
     if(!t) {
         printf("not enough memory\n");
@@ -76,9 +75,9 @@ void add2list(ptr *head, int num) {
     }
 }
 
-void printList(ptr head) {
-    ptr tmp;
-    printf("inside print\n");
+void printList(Node *head) {
+    Node *tmp;
+    printf("inside print new\n");
     
     tmp = head;
     while(tmp -> next != head) {
