@@ -21,6 +21,8 @@ int main() {
     add2list(&h1, 5);
     add2list(&h2, 4);
     add2list(&h2, 6);
+    add2list(&h2, 7);
+
     
     printList(h1);
     printList(h2);
@@ -58,7 +60,7 @@ void add2list(Node **head, int num) {
         //printf("case 2|p1 -> data < t -> data = %d\n", t -> data);
         p1 -> next = t;
         t -> next = *head;
-    }else if(p1 == *head) {
+    } else if(p1 == *head) {
         
         //if we need to add a node to the beginning of the list
         //printf("case 3|p1 -> data >= t -> data = %d\n", t -> data);
@@ -88,7 +90,9 @@ void printList(Node *head) {
 }
 
 Node * mergeList(Node **h1, Node **h2) {
-    Node *prev1, *prev2, *curr1, *curr2;
+    Node *prev1, *prev2, *curr1, *curr2, *tmp;
+    int last_h1_node_reached = 0;
+
     prev1 = *h1;
     curr1 = *h1;
     
@@ -103,7 +107,7 @@ Node * mergeList(Node **h1, Node **h2) {
         return *h1;
     }
     
-    while( (curr1 -> next != *h1) && (curr2 -> next != *h2) ) {
+    while( (curr1 -> next != *h1 && curr2 -> next != *h2) ) {
         while( (curr1 -> next != *h1) && (curr2 -> next != *h2) && (curr1 -> data < curr2 -> data) ) {
             prev1 = curr1;
             curr1 = curr1 -> next;
@@ -127,10 +131,20 @@ Node * mergeList(Node **h1, Node **h2) {
             curr2 -> next = *h1;
         } else if(curr1 -> next == *h1 && curr1 -> data > curr2 -> data) {
             //case3: if the last node of *h1 is more than *h2
+            tmp = curr2;
+            
             prev1 -> next = curr2;
-            *h2 = curr2 -> next;
+            *h2 = curr2;
+            while(tmp -> next != *h2) {
+                tmp = tmp -> next;
+            }
+            tmp -> next = (*h2) -> next;
+            *h2 = tmp -> next;
             curr2 -> next = curr1;
             curr2 = *h2;
+            //last_h1_node_reached = 1;
+            
+            
         } else {
             //case4
             prev1 -> next = curr2;
@@ -138,8 +152,8 @@ Node * mergeList(Node **h1, Node **h2) {
         }
         
         
-        
     } //end of while
+    
     
     return *h1;
 }
