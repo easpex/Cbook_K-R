@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define min(a,b) ( (a) < (b) ) ? (a) : (b)
 
 typedef struct Node {
     int data;
@@ -8,6 +9,7 @@ typedef struct Node {
 
 void add2list(Node **head, int num);
 void printList(Node *p);
+Node * mergeList(Node **h1, Node **h2);
 
 int main() {
     Node *head = NULL;
@@ -31,8 +33,8 @@ int main() {
 
 
 void add2list(Node **head, int num) {
-    printf("inside add\n");
     Node *p1, *p2, *t;
+    printf("inside add\n");
     
     t = (Node *) malloc(sizeof(Node));
     
@@ -85,4 +87,34 @@ void printList(Node *head) {
         tmp = tmp -> next;
     }
     printf("%d\n", tmp -> data);
+}
+
+Node * mergeList(Node **h1, Node **h2) {
+    Node *p1, *p2;
+    p1 = *h1;
+    p2 = *h2;
+    
+    if(p1 == NULL) {
+        return p2;
+    }
+    if(p2 == NULL) {
+        return p1;
+    }
+    //p1 != NULL && p1 -> next != *head && p1 -> data < nu
+    while( (p1 != NULL && p1 -> next != *head) || (p2 != NULL && p2 -> next != *head) ) {
+        if(p1 -> data < p2 -> data) {
+            while( (p1 = p1 -> next -> data < p2 -> data)
+                ;
+            
+            
+                if() {
+                    p1 = p1 -> next;
+                } else {
+                    p1 -> next = p2;
+                    
+                }
+        
+    } //end of while
+
+    
 }

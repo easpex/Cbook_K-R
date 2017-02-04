@@ -216,6 +216,11 @@
 		91FC49A01E44CEA80030B98B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"OTHER_CFLAGS[arch=*]" = (
+					"-Wall",
+					"-pedantic",
+					"-ansi",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
