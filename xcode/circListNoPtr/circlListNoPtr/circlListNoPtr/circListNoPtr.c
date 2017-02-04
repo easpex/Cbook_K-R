@@ -18,10 +18,10 @@ int main() {
     
     add2list(&h1, 1);
     add2list(&h1, 2);
-    add2list(&h1, 3);
+    add2list(&h1, 5);
     add2list(&h2, 4);
-    add2list(&h2, 5);
-
+    add2list(&h2, 6);
+    
     printList(h1);
     printList(h2);
     
@@ -110,7 +110,7 @@ Node * mergeList(Node **h1, Node **h2) {
         }
         
         if(prev1 == curr1) {
-            //means that curr1 > curr2 so the loop didn't occur; means that we need to insert a node before curr1
+            //case1: means that curr1 > curr2 so the loop didn't occur; means that we need to insert a node before curr1
             while(curr1 -> next != *h1) {
                 curr1 = curr1 -> next;
             }
@@ -118,7 +118,7 @@ Node * mergeList(Node **h1, Node **h2) {
             curr2 -> next = *h1;
             *h1 = curr2;
         } else if(curr1 -> next == *h1 && curr1 -> data < curr2 -> data){
-            //if all of the nodes of *h1 are less than *h2
+            //case2: if the last node of *h1 is less than *h2
             curr1 -> next = curr2;
             
             while(curr2 -> next != *h2) {
@@ -126,13 +126,20 @@ Node * mergeList(Node **h1, Node **h2) {
             }
             curr2 -> next = *h1;
         } else if(curr1 -> next == *h1 && curr1 -> data > curr2 -> data) {
-            //empty
+            //case3: if the last node of *h1 is more than *h2
+            prev1 -> next = curr2;
+            *h2 = curr2 -> next;
+            curr2 -> next = curr1;
+            curr2 = *h2;
+        } else {
+            //case4
+            prev1 -> next = curr2;
+            curr2 -> next = curr1 -> next;
         }
-        //else: prev1 -> next = curr2;
-        //      curr2 -> next = curr1 -> next;
+        
         
         
     } //end of while
-
+    
     return *h1;
 }
