@@ -12,21 +12,21 @@ void printList(Node *p);
 Node * mergeList(Node **h1, Node **h2);
 
 int main() {
-    Node *head = NULL;
+    Node *h1 = NULL;
+    Node *h2 = NULL;
+    Node *m = NULL;
     
-    add2list(&head, 1);
-    add2list(&head, 2);
-    add2list(&head, 5);
-    add2list(&head, 3);
-    add2list(&head, 0);
-    add2list(&head, 4);
-    add2list(&head, -2);
+    add2list(&h1, 1);
+    add2list(&h1, 2);
+    add2list(&h1, 3);
+    add2list(&h2, 4);
+    add2list(&h2, 5);
+
+    printList(h1);
+    printList(h2);
     
-    //xcode neww
-    
-    
-    printf("head = %d\n", head -> data);
-    printList(head);
+    m = mergeList(&h1, &h2);
+    printList(m);
     
     return 0;
 }
@@ -34,7 +34,6 @@ int main() {
 
 void add2list(Node **head, int num) {
     Node *p1, *p2, *t;
-    printf("inside add\n");
     
     t = (Node *) malloc(sizeof(Node));
     
@@ -56,13 +55,13 @@ void add2list(Node **head, int num) {
         t -> next = *head;
     } else if(p1 -> data < t -> data) {
         //if we need to add a node to the end of the list
-        printf("case 2|p1 -> data < t -> data = %d\n", t -> data);
+        //printf("case 2|p1 -> data < t -> data = %d\n", t -> data);
         p1 -> next = t;
         t -> next = *head;
     }else if(p1 == *head) {
         
         //if we need to add a node to the beginning of the list
-        printf("case 3|p1 -> data >= t -> data = %d\n", t -> data);
+        //printf("case 3|p1 -> data >= t -> data = %d\n", t -> data);
         while(p1 -> next != *head) {
             p1 = p1 -> next;
         }
@@ -71,7 +70,7 @@ void add2list(Node **head, int num) {
         *head = t;
     } else {
         //need to add a node in the middle
-        printf("case 4|p1 -> data >= t -> data = %d\n", t -> data);
+        //printf("case 4|p1 -> data >= t -> data = %d\n", t -> data);
         p2 -> next = t;
         t -> next = p1;
     }
@@ -79,7 +78,6 @@ void add2list(Node **head, int num) {
 
 void printList(Node *head) {
     Node *tmp;
-    printf("inside print new\n");
     
     tmp = head;
     while(tmp -> next != head) {
@@ -90,31 +88,51 @@ void printList(Node *head) {
 }
 
 Node * mergeList(Node **h1, Node **h2) {
-    Node *p1, *p2;
-    p1 = *h1;
-    p2 = *h2;
+    Node *prev1, *prev2, *curr1, *curr2;
+    prev1 = *h1;
+    curr1 = *h1;
     
-    if(p1 == NULL) {
-        return p2;
+    prev2 = *h2;
+    curr2 = *h2;
+    
+    //if one of the lists is NULL
+    if(*h1 == NULL) {
+        return *h2;
     }
-    if(p2 == NULL) {
-        return p1;
+    if(*h2 == NULL) {
+        return *h1;
     }
-    //p1 != NULL && p1 -> next != *head && p1 -> data < nu
-    while( (p1 != NULL && p1 -> next != *head) || (p2 != NULL && p2 -> next != *head) ) {
-        if(p1 -> data < p2 -> data) {
-            while( (p1 = p1 -> next -> data < p2 -> data)
-                ;
+    
+    while( (curr1 -> next != *h1) && (curr2 -> next != *h2) ) {
+        while( (curr1 -> next != *h1) && (curr2 -> next != *h2) && (curr1 -> data < curr2 -> data) ) {
+            prev1 = curr1;
+            curr1 = curr1 -> next;
+        }
+        
+        if(prev1 == curr1) {
+            //means that curr1 > curr2 so the loop didn't occur; means that we need to insert a node before curr1
+            while(curr1 -> next != *h1) {
+                curr1 = curr1 -> next;
+            }
+            curr1 -> next = curr2;
+            curr2 -> next = *h1;
+            *h1 = curr2;
+        } else if(curr1 -> next == *h1 && curr1 -> data < curr2 -> data){
+            //if all of the nodes of *h1 are less than *h2
+            curr1 -> next = curr2;
             
-            
-                if() {
-                    p1 = p1 -> next;
-                } else {
-                    p1 -> next = p2;
-                    
-                }
+            while(curr2 -> next != *h2) {
+                curr2 = curr2 -> next;
+            }
+            curr2 -> next = *h1;
+        } else if(curr1 -> next == *h1 && curr1 -> data > curr2 -> data) {
+            //empty
+        }
+        //else: prev1 -> next = curr2;
+        //      curr2 -> next = curr1 -> next;
+        
         
     } //end of while
 
-    
+    return *h1;
 }
