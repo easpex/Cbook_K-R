@@ -18,11 +18,12 @@ int main() {
     
     add2list(&h1, 1);
     add2list(&h1, 2);
-    add2list(&h1, 5);
+    add2list(&h1, 3);
+    add2list(&h1, 7);
+    add2list(&h2, 3);
     add2list(&h2, 4);
-    add2list(&h2, 6);
-    add2list(&h2, 7);
-
+    add2list(&h2, 5);
+    
     
     printList(h1);
     printList(h2);
@@ -92,7 +93,7 @@ void printList(Node *head) {
 Node * mergeList(Node **h1, Node **h2) {
     Node *prev1, *prev2, *curr1, *curr2, *tmp;
     int last_h1_node_reached = 0;
-
+    
     prev1 = *h1;
     curr1 = *h1;
     
@@ -131,24 +132,31 @@ Node * mergeList(Node **h1, Node **h2) {
             curr2 -> next = *h1;
         } else if(curr1 -> next == *h1 && curr1 -> data > curr2 -> data) {
             //case3: if the last node of *h1 is more than *h2
-            tmp = curr2;
             
-            prev1 -> next = curr2;
-            *h2 = curr2;
-            while(tmp -> next != *h2) {
+            prev1 -> next = curr2; //
+            tmp = curr2 -> next;
+            while(prev2 -> data < curr1 -> data && tmp -> next != *h2) {
+                prev2 = prev2 -> next;
                 tmp = tmp -> next;
             }
-            tmp -> next = (*h2) -> next;
-            *h2 = tmp -> next;
-            curr2 -> next = curr1;
-            curr2 = *h2;
-            //last_h1_node_reached = 1;
             
+            prev2 -> next = curr1;
+            curr1 -> next = tmp;
+            curr1 = tmp; //reset curr1 so the outer while loop will exit when needed
+            tmp -> next = *h1;
             
         } else {
             //case4
-            prev1 -> next = curr2;
-            curr2 -> next = curr1 -> next;
+            tmp = curr2;
+            prev1 -> next = tmp;
+            curr2 = curr2 -> next;
+            while(curr2 -> next != *h2) {
+                curr2 = curr2 -> next;
+            }
+            curr2 -> next = (*h2) -> next;
+            *h2 = (*h2) -> next;
+            tmp -> next = curr1;
+            curr2 = *h2;
         }
         
         
