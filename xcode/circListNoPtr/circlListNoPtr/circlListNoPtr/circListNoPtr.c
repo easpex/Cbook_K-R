@@ -7,8 +7,10 @@ typedef struct Node {
     struct Node *next;
 } Node;
 
+
 void add2list(Node **head, int num);
 void printList(Node *p);
+void printSingleList(Node *h);
 Node * mergeList(Node **h1, Node **h2);
 
 int main() {
@@ -29,7 +31,8 @@ int main() {
     printList(h2);
     
     m = mergeList(&h1, &h2);
-    printList(m);
+    printSingleList(m);
+    //printList(m);
     
     return 0;
 }
@@ -92,7 +95,6 @@ void printList(Node *head) {
 
 Node * mergeList(Node **h1, Node **h2) {
     Node *prev1, *prev2, *curr1, *curr2, *tmp;
-    int last_h1_node_reached = 0;
     
     prev1 = *h1;
     curr1 = *h1;
@@ -108,60 +110,36 @@ Node * mergeList(Node **h1, Node **h2) {
         return *h1;
     }
     
-    while( (curr1 -> next != *h1 && curr2 -> next != *h2) ) {
-        while( (curr1 -> next != *h1) && (curr2 -> next != *h2) && (curr1 -> data < curr2 -> data) ) {
-            prev1 = curr1;
-            curr1 = curr1 -> next;
-        }
-        
-        if(prev1 == curr1) {
-            //case1: means that curr1 > curr2 so the loop didn't occur; means that we need to insert a node before curr1
-            while(curr1 -> next != *h1) {
-                curr1 = curr1 -> next;
-            }
-            curr1 -> next = curr2;
-            curr2 -> next = *h1;
-            *h1 = curr2;
-        } else if(curr1 -> next == *h1 && curr1 -> data < curr2 -> data){
-            //case2: if the last node of *h1 is less than *h2
-            curr1 -> next = curr2;
-            
-            while(curr2 -> next != *h2) {
-                curr2 = curr2 -> next;
-            }
-            curr2 -> next = *h1;
-        } else if(curr1 -> next == *h1 && curr1 -> data > curr2 -> data) {
-            //case3: if the last node of *h1 is more than *h2
-            
-            prev1 -> next = curr2; //
-            tmp = curr2 -> next;
-            while(prev2 -> data < curr1 -> data && tmp -> next != *h2) {
-                prev2 = prev2 -> next;
-                tmp = tmp -> next;
-            }
-            
-            prev2 -> next = curr1;
-            curr1 -> next = tmp;
-            curr1 = tmp; //reset curr1 so the outer while loop will exit when needed
-            tmp -> next = *h1;
-            
-        } else {
-            //case4
-            tmp = curr2;
-            prev1 -> next = tmp;
-            curr2 = curr2 -> next;
-            while(curr2 -> next != *h2) {
-                curr2 = curr2 -> next;
-            }
-            curr2 -> next = (*h2) -> next;
-            *h2 = (*h2) -> next;
-            tmp -> next = curr1;
-            curr2 = *h2;
-        }
-        
-        
+    while(curr1 -> next != *h1) { //transform circ list into regular linked list
+        curr1 = curr1 -> next;
     } //end of while
+    curr1 -> next = NULL;
+    printSingleList(*h1);
+    printf("(*h1) -> data = %d\n", (*h1) -> data);
+    curr1 = *h1;
     
+    while(curr2 -> next != *h2) { //transform circ list into regular linked list
+        curr2 = curr2 -> next;
+    } //end of while
+    curr2 -> next = NULL;
+    printSingleList(*h2);
+    printf("(*h2) -> data = %d\n", (*h2) -> data);
+    curr2 = *h2;
     
-    return *h1;
+    if(curr1 -> data < curr2 -> data) {
+        curr1 -> next = mergeList(&(curr1 -> next), &curr2);
+        return curr1;
+    } else {
+        curr2 -> next  = mergeList(&(curr2 -> next), &curr1);
+        return curr2;
+    }
+}
+
+void printSingleList(Node *h) {
+    printf("from printSingleList\n");
+    while(h) {
+        printf("%d ->", h -> data);
+        h = h -> next;
+    }
+    printf("\n");
 }
